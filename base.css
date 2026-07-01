@@ -1,0 +1,207 @@
+/* =============================================================================
+   Base — shared chrome for the design-system gallery pages
+   Pairs with: tokens.css (variables) and nav.js (navigation behaviour).
+   Each page's <style> block holds only its own specimen styles.
+   ============================================================================= */
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+/* ---------- Page shell ---------- */
+body {
+  font-family: var(--font-sans);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  padding: var(--space-8) var(--space-12);
+}
+
+.page-heading {
+  font-size: var(--type-display-2xl-size);
+  font-weight: var(--type-display-2xl-weight);
+  line-height: var(--type-display-2xl-leading);
+  letter-spacing: var(--type-display-2xl-tracking);
+  margin-bottom: var(--space-16);
+}
+
+/* ---------- Sections ---------- */
+.section { margin-bottom: var(--space-16); }
+.section:last-child { margin-bottom: 0; }
+
+.section-label {
+  font-size: var(--type-label-md-size);
+  font-weight: var(--type-label-md-weight);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+/* ---------- Specimen rows ----------
+   Default row: name | value … shape. Pages override gap/padding/alignment
+   where their content needs it (see typography.html, spacing.html). */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.row:first-of-type { border-top: 1px solid hsl(var(--border)); }
+
+/* Row name label */
+.name {
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+/* Monospace token + value labels */
+.token,
+.value {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: hsl(var(--muted-foreground));
+}
+.token { flex: 1; white-space: nowrap; }
+
+
+/* =============================================================================
+   THEME TRANSITION
+   Cross-fade colours only while actively toggling, so nothing animates from
+   its default on first paint. nav.js adds/removes [data-theme-transitioning].
+   ============================================================================= */
+[data-theme-transitioning],
+[data-theme-transitioning] * {
+  transition:
+    background-color 250ms linear,
+    color            250ms linear,
+    border-color     250ms linear,
+    box-shadow       250ms linear,
+    fill             250ms linear,
+    stroke           250ms linear !important;
+}
+
+
+/* =============================================================================
+   NAVIGATION  (DOM injected by nav.js)
+   ============================================================================= */
+#ds-nav {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 180px;
+  background: hsl(var(--background));
+  border-right: 1px solid hsl(var(--border));
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 200;
+  transition: transform var(--transition-base);
+}
+
+.ds-nav-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.ds-nav-link {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--type-body-md-size);
+  font-weight: var(--font-regular);
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  padding: var(--space-1-5) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.ds-nav-link:hover  { color: hsl(var(--foreground)); background: hsl(var(--muted)); }
+.ds-nav-link.active { color: hsl(var(--foreground)); font-weight: var(--font-medium); }
+
+.ds-nav-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  background: none;
+  border: none;
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.ds-nav-toggle:hover { color: hsl(var(--foreground)); }
+.ds-nav-toggle .ds-sun,
+.ds-nav-toggle .ds-moon { display: none; }
+
+#ds-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: hsl(var(--background) / 0.7);
+  backdrop-filter: blur(2px);
+  z-index: 199;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+#ds-backdrop.visible { opacity: 1; pointer-events: auto; }
+
+/* Mobile top bar — hidden on desktop, shown in the mobile query below */
+#ds-mobile-bar { display: none; }
+
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+@media (min-width: 768px) {
+  body.ds-layout { padding-left: calc(180px + var(--space-12)); }
+}
+
+@media (max-width: 767px) {
+  #ds-nav { transform: translateX(-100%); }
+  #ds-nav.open { transform: translateX(0); }
+
+  #ds-backdrop { display: block; }
+
+  #ds-mobile-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 52px;
+    padding: 0 var(--space-6);
+    background: hsl(var(--background));
+    border-bottom: 1px solid hsl(var(--border));
+    z-index: 201;
+  }
+
+  #ds-hamburger,
+  #ds-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    background: none;
+    border: none;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+  }
+
+  #ds-mobile-toggle .ds-sun,
+  #ds-mobile-toggle .ds-moon { display: none; }
+
+  body.ds-layout {
+    padding-left: var(--space-8);
+    padding-top: calc(52px + var(--space-8));
+  }
+}

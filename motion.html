@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motion — KNL Design System</title>
+  <script>
+    // Set theme before first paint to avoid a flash; full control in nav.js.
+    document.documentElement.setAttribute('data-theme',
+      localStorage.getItem('ds-theme') ||
+      (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    /* Click a row to replay the dot along its duration / easing */
+    .dot-wrap {
+      width: 280px;
+      height: 32px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: hsl(var(--foreground));
+      border-radius: var(--radius-full);
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-heading">Motion</h1>
+
+  <!-- Duration -->
+  <div class="section">
+    <div class="section-label">Duration</div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="100" data-easing="var(--ease-out)"></div></div><div class="token">--duration-fast</div><div class="value">100ms</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="200" data-easing="var(--ease-out)"></div></div><div class="token">--duration-normal</div><div class="value">200ms</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="300" data-easing="var(--ease-out)"></div></div><div class="token">--duration-slow</div><div class="value">300ms</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="500" data-easing="var(--ease-out)"></div></div><div class="token">--duration-slower</div><div class="value">500ms</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="700" data-easing="var(--ease-out)"></div></div><div class="token">--duration-slowest</div><div class="value">700ms</div></div>
+  </div>
+
+  <!-- Easing -->
+  <div class="section">
+    <div class="section-label">Easing</div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="600" data-easing="linear"></div></div><div class="token">--ease-linear</div><div class="value">linear</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="600" data-easing="cubic-bezier(0.4,0,1,1)"></div></div><div class="token">--ease-in</div><div class="value">cubic-bezier(0.4, 0, 1, 1)</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="600" data-easing="cubic-bezier(0,0,0.2,1)"></div></div><div class="token">--ease-out</div><div class="value">cubic-bezier(0, 0, 0.2, 1)</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="600" data-easing="cubic-bezier(0.4,0,0.2,1)"></div></div><div class="token">--ease-in-out</div><div class="value">cubic-bezier(0.4, 0, 0.2, 1)</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="600" data-easing="cubic-bezier(0.175,0.885,0.32,1.275)"></div></div><div class="token">--ease-spring</div><div class="value">cubic-bezier(0.175, 0.885, 0.32, 1.275)</div></div>
+    <div class="row"><div class="dot-wrap"><div class="dot" data-duration="600" data-easing="cubic-bezier(0.34,1.56,0.64,1)"></div></div><div class="token">--ease-bounce</div><div class="value">cubic-bezier(0.34, 1.56, 0.64, 1)</div></div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.dot').forEach(dot => {
+      dot.parentElement.addEventListener('click', () => {
+        const duration = dot.dataset.duration;
+        const easing = dot.dataset.easing;
+        dot.style.transition = 'none';
+        dot.style.left = '0px';
+        dot.offsetHeight;
+        dot.style.transition = `left ${duration}ms ${easing}`;
+        dot.style.left = 'calc(280px - 12px)';
+        setTimeout(() => {
+          dot.style.transition = `left ${duration}ms ${easing}`;
+          dot.style.left = '0px';
+        }, parseInt(duration) + 100);
+      });
+    });
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radius — KNL Design System</title>
+  <script>
+    // Set theme before first paint to avoid a flash; full control in nav.js.
+    document.documentElement.setAttribute('data-theme',
+      localStorage.getItem('ds-theme') ||
+      (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    .preview {
+      width: 80px;
+      height: 40px;
+      background: hsl(var(--muted));
+      border: 1px solid hsl(var(--border));
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-heading">Radius</h1>
+
+  <div class="section">
+    <div class="section-label">Scale</div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-none);"></div><div class="name">None</div><div class="token">--radius-none</div><div class="value">0px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-xs);"></div><div class="name">XS</div><div class="token">--radius-xs</div><div class="value">2px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-sm);"></div><div class="name">SM</div><div class="token">--radius-sm</div><div class="value">4px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-md);"></div><div class="name">MD</div><div class="token">--radius-md</div><div class="value">6px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-base);"></div><div class="name">Base</div><div class="token">--radius-base</div><div class="value">8px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-lg);"></div><div class="name">LG</div><div class="token">--radius-lg</div><div class="value">12px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-xl);"></div><div class="name">XL</div><div class="token">--radius-xl</div><div class="value">16px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-2xl);"></div><div class="name">2XL</div><div class="token">--radius-2xl</div><div class="value">20px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-3xl);"></div><div class="name">3XL</div><div class="token">--radius-3xl</div><div class="value">24px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-full);"></div><div class="name">Full</div><div class="token">--radius-full</div><div class="value">9999px</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Semantic</div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-button);"></div><div class="name">Button</div><div class="token">--radius-button</div><div class="value">9999px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-input);"></div><div class="name">Input</div><div class="token">--radius-input</div><div class="value">4px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-tag);"></div><div class="name">Tag</div><div class="token">--radius-tag</div><div class="value">14px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-badge);"></div><div class="name">Badge</div><div class="token">--radius-badge</div><div class="value">18px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-tooltip);"></div><div class="name">Tooltip</div><div class="token">--radius-tooltip</div><div class="value">8px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-card);"></div><div class="name">Card</div><div class="token">--radius-card</div><div class="value">20px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-card-lg);"></div><div class="name">Card LG</div><div class="token">--radius-card-lg</div><div class="value">24px</div></div>
+    <div class="row"><div class="preview" style="border-radius: var(--radius-dialog);"></div><div class="name">Dialog</div><div class="token">--radius-dialog</div><div class="value">20px</div></div>
+  </div>
+
+  <script src="nav.js"></script>
+</body>
+</html>
