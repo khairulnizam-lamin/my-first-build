@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forms — KNL Design System</title>
+  <script>
+    document.documentElement.setAttribute('data-theme',
+      localStorage.getItem('ds-theme') ||
+      (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="components.css" />
+</head>
+<body>
+
+  <h1 class="page-heading">Forms</h1>
+
+  <div class="section">
+    <div class="section-label">Text input</div>
+    <div class="demo-col">
+      <input class="input" type="text" placeholder="Placeholder text" />
+      <input class="input" type="text" value="With a value" />
+      <input class="input is-error" type="text" value="Invalid entry" aria-invalid="true" />
+      <input class="input" type="text" placeholder="Disabled" disabled />
+      <textarea class="textarea" placeholder="Longer, multi-line text…"></textarea>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Select</div>
+    <div class="demo-col">
+      <select class="select">
+        <option>Choose an option</option>
+        <option>RedMart</option>
+        <option>Grab</option>
+        <option>Kraken</option>
+        <option>Meta</option>
+        <option>Wise</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Checkbox &amp; radio</div>
+    <div class="demo-col">
+      <label class="field-row"><input class="checkbox" type="checkbox" checked /> Email notifications</label>
+      <label class="field-row"><input class="checkbox" type="checkbox" /> SMS notifications</label>
+      <label class="field-row"><input class="radio" type="radio" name="plan" checked /> Monthly</label>
+      <label class="field-row"><input class="radio" type="radio" name="plan" /> Annual</label>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Switch</div>
+    <div class="demo-col">
+      <label class="field-row"><span class="switch"><input type="checkbox" checked /><span></span></span> Dark mode</label>
+      <label class="field-row"><span class="switch"><input type="checkbox" /><span></span></span> Auto-save</label>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Slider</div>
+    <div class="demo-col">
+      <input class="range" type="range" min="0" max="100" value="60" />
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Field</div>
+    <div class="demo-col">
+      <div class="field">
+        <label class="field-label" for="email">Email address</label>
+        <input class="input" id="email" type="email" placeholder="you@example.com" />
+        <span class="field-hint">We'll never share it with anyone.</span>
+      </div>
+      <div class="field">
+        <label class="field-label" for="pw">Password</label>
+        <input class="input is-error" id="pw" type="password" value="short" aria-invalid="true" />
+        <span class="field-error">Must be at least 8 characters.</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+</body>
+</html>

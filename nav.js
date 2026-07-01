@@ -5,13 +5,30 @@
    All navigation styling lives in base.css.
    ============================================================================= */
 
-const pages = [
-  { label: 'Typography', href: 'typography.html' },
-  { label: 'Colour',     href: 'colour.html' },
-  { label: 'Spacing',    href: 'spacing.html' },
-  { label: 'Radius',     href: 'radius.html' },
-  { label: 'Shadow',     href: 'shadow.html' },
-  { label: 'Motion',     href: 'motion.html' },
+const navGroups = [
+  {
+    title: 'Foundations',
+    items: [
+      { label: 'Typography', href: 'typography.html' },
+      { label: 'Colour',     href: 'colour.html' },
+      { label: 'Spacing',    href: 'spacing.html' },
+      { label: 'Radius',     href: 'radius.html' },
+      { label: 'Shadow',     href: 'shadow.html' },
+      { label: 'Motion',     href: 'motion.html' },
+      { label: 'Layout',     href: 'layout.html' },
+    ],
+  },
+  {
+    title: 'Components',
+    items: [
+      { label: 'Buttons',    href: 'buttons.html' },
+      { label: 'Forms',      href: 'forms.html' },
+      { label: 'Feedback',   href: 'feedback.html' },
+      { label: 'Surfaces',   href: 'surfaces.html' },
+      { label: 'Navigation', href: 'navigation.html' },
+      { label: 'Data',       href: 'data.html' },
+    ],
+  },
 ];
 
 const current = window.location.pathname.split('/').pop() || 'typography.html';
@@ -65,9 +82,16 @@ const moonSVG = `<svg class="ds-moon" xmlns="http://www.w3.org/2000/svg" width="
 const nav = document.createElement('nav');
 nav.id = 'ds-nav';
 nav.innerHTML = `
-  <ul class="ds-nav-list">
-    ${pages.map(p => `<li><a href="${p.href}" class="ds-nav-link${current === p.href ? ' active' : ''}">${p.label}</a></li>`).join('')}
-  </ul>
+  <div class="ds-nav-scroll">
+    ${navGroups.map(g => `
+      <div class="ds-nav-group">
+        <div class="ds-nav-group-title">${g.title}</div>
+        <ul class="ds-nav-list">
+          ${g.items.map(p => `<li><a href="${p.href}" class="ds-nav-link${current === p.href ? ' active' : ''}">${p.label}</a></li>`).join('')}
+        </ul>
+      </div>
+    `).join('')}
+  </div>
   <button class="ds-nav-toggle" aria-label="Toggle theme">${sunSVG}${moonSVG}</button>
 `;
 nav.querySelector('.ds-nav-toggle').addEventListener('click', toggleTheme);

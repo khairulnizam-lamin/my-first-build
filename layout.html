@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layout — KNL Design System</title>
+  <script>
+    document.documentElement.setAttribute('data-theme',
+      localStorage.getItem('ds-theme') ||
+      (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    .grid-cell {
+      height: 64px;
+      background: hsl(var(--muted));
+      border-radius: var(--radius-base);
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-heading">Layout</h1>
+
+  <div class="section">
+    <div class="section-label">Content widths</div>
+    <div class="row"><div class="name">Narrow</div><div class="token">--content-narrow</div><div class="value">520px</div></div>
+    <div class="row"><div class="name">Default</div><div class="token">--content-default</div><div class="value">720px</div></div>
+    <div class="row"><div class="name">Wide</div><div class="token">--content-wide</div><div class="value">960px</div></div>
+    <div class="row"><div class="name">Full</div><div class="token">--content-full</div><div class="value">1200px</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Gutters</div>
+    <div class="row"><div class="name">SM</div><div class="token">--gutter-sm</div><div class="value">16px</div></div>
+    <div class="row"><div class="name">MD</div><div class="token">--gutter-md</div><div class="value">24px</div></div>
+    <div class="row"><div class="name">LG</div><div class="token">--gutter-lg</div><div class="value">32px</div></div>
+    <div class="row"><div class="name">XL</div><div class="token">--gutter-xl</div><div class="value">48px</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Breakpoints</div>
+    <div class="row"><div class="name">SM</div><div class="token">--breakpoint-sm</div><div class="value">640px</div></div>
+    <div class="row"><div class="name">MD</div><div class="token">--breakpoint-md</div><div class="value">768px</div></div>
+    <div class="row"><div class="name">LG</div><div class="token">--breakpoint-lg</div><div class="value">1024px</div></div>
+    <div class="row"><div class="name">XL</div><div class="token">--breakpoint-xl</div><div class="value">1280px</div></div>
+    <div class="row"><div class="name">2XL</div><div class="token">--breakpoint-2xl</div><div class="value">1536px</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Responsive grid</div>
+    <div class="demo-label">Auto-fill columns, min 240px, gutter 16px</div>
+    <div class="demo-grid">
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+</body>
+</html>

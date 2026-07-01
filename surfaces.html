@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surfaces — KNL Design System</title>
+  <script>
+    document.documentElement.setAttribute('data-theme',
+      localStorage.getItem('ds-theme') ||
+      (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="components.css" />
+</head>
+<body>
+
+  <h1 class="page-heading">Surfaces</h1>
+
+  <div class="section">
+    <div class="section-label">Card</div>
+    <div class="demo-grid">
+      <div class="card">
+        <div class="card-title">Card title</div>
+        <div class="card-body">A surface for grouping related content, lifted with the raised shadow.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">With action</div>
+        <div class="card-body" style="margin-bottom: var(--space-4);">Cards can hold any content, including their own controls.</div>
+        <button class="btn btn-primary btn-sm">Action</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Dialog</div>
+    <div class="demo-row">
+      <button class="btn btn-primary" data-dialog-open="demo-dialog">Open dialog</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Popover</div>
+    <div class="demo-row">
+      <span class="popover-wrap">
+        <button class="btn btn-outline" data-dropdown="demo-popover">Toggle popover</button>
+        <div class="popover" id="demo-popover">
+          <div class="card-title" style="font-size: var(--type-heading-sm-size);">Popover</div>
+          <div class="card-body">Anchored floating content, dismissed on outside click or Escape.</div>
+        </div>
+      </span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Accordion</div>
+    <div style="max-width: 520px;">
+      <div class="accordion-item">
+        <button class="accordion-trigger" data-accordion>
+          What is a design system?
+          <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-content">A shared set of tokens, components, and guidelines that keep a product consistent.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" data-accordion>
+          Why build one from scratch?
+          <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-content">To understand every layer end to end — the whole point of this project.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" data-accordion>
+          Is it ever finished?
+          <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-content">No — it grows with the product it serves.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Separator</div>
+    <div class="demo-col" style="max-width: 520px; width: 100%;">
+      <span>Above</span>
+      <hr class="separator" />
+      <span>Below</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Avatar</div>
+    <div class="demo-row">
+      <span class="avatar avatar-sm">KL</span>
+      <span class="avatar">KL</span>
+      <span class="avatar avatar-lg">KL</span>
+    </div>
+  </div>
+
+  <!-- Dialog instance -->
+  <div class="dialog-backdrop" id="demo-dialog">
+    <div class="dialog" role="dialog" aria-modal="true">
+      <div class="dialog-title">Delete project?</div>
+      <div class="dialog-body">This action is permanent and cannot be undone.</div>
+      <div class="dialog-actions">
+        <button class="btn btn-ghost" data-dialog-close>Cancel</button>
+        <button class="btn btn-destructive" data-dialog-close>Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="components.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>
