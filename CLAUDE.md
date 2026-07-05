@@ -11,28 +11,22 @@ Khairul's first end-to-end build: a personal site + a hand-rolled design system 
 ## Run it
 Static files — open `index.html`, or serve the folder:
 `python3 -m http.server 8042` → http://localhost:8042
-Deploys to Vercel from `main` → https://my-first-build-one.vercel.app
+Deploys to Vercel from `main` → https://khairulnizam-lamin.vercel.app
 
-## Architecture — three CSS layers + two scripts
+## Architecture — two CSS layers + one script
 - **`tokens.css`** — design tokens (variables): colour, type, spacing, radius, shadow,
   motion, layout. shadcn-style HSL without the `hsl()` wrapper. Dark is the default;
   light overrides live under `:root[data-theme="light"]`.
 - **`base.css`** — shared page chrome: reset, page shell, section/row patterns, the
   sidebar nav, theme cross-fade, demo helpers.
-- **`components.css`** — reusable UI classes (`.btn`, `.input`, `.card`, `.badge`, …),
-  built only from tokens.
 - **`nav.js`** — injects the sidebar nav and runs the theme controller (system-aware,
   live OS sync, manual toggle).
-- **`components.js`** — delegated behaviour for interactive components (tabs, accordion,
-  dialog, dropdown, toast) via `data-` attributes.
 
 Every page: `<head>` has an inline anti-flash theme script, then links
-`tokens.css` → `base.css` (→ `components.css` on component pages), and ends with
-`nav.js` (+ `components.js` where interactivity is used).
+`tokens.css` → `base.css`, and ends with `nav.js`.
 
 ## Pages
 - **Foundations:** typography, colour, spacing, radius, shadow, motion, layout
-- **Components:** buttons, forms, feedback, surfaces, navigation, data
 - **Landing:** `index.html` (the design-system bio)
 
 ## Conventions

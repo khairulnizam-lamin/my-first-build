@@ -18,17 +18,6 @@ const navGroups = [
       { label: 'Layout',     href: 'layout.html' },
     ],
   },
-  {
-    title: 'Components',
-    items: [
-      { label: 'Buttons',    href: 'buttons.html' },
-      { label: 'Forms',      href: 'forms.html' },
-      { label: 'Feedback',   href: 'feedback.html' },
-      { label: 'Surfaces',   href: 'surfaces.html' },
-      { label: 'Navigation', href: 'navigation.html' },
-      { label: 'Data',       href: 'data.html' },
-    ],
-  },
 ];
 
 const current = window.location.pathname.split('/').pop() || 'typography.html';
